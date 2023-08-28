@@ -1,0 +1,43 @@
+#!/bin/bash
+###########
+#Parcial 1
+#Script 1
+###########
+#Crear carpeta "genosmas_virales"
+mkdir genomas_virales
+#Mover a carpeta "genomas_virales"
+cd /home/marifer/genomas_virales
+#Descargar los 10 genomas virales
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/901/155/GCF_000901155.1_ViralProj183710/GCF_000901155.1_ViralProj183710_genomic.fna.gz 
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/858/895/GCF_009858895.2_ASM985889v3/GCF_009858895.2_ASM985889v3_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/854/845/GCF_000854845.1_ViralProj15025/GCF_000854845.1_ViralProj15025_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/861/845/GCF_000861845.1_ViralProj15432/GCF_000861845.1_ViralProj15432_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/865/085/GCF_000865085.1_ViralMultiSegProj15622/GCF_000865085.1_ViralMultiSegProj15622_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/901/155/GCF_000901155.1_ViralProj183710/GCF_000901155.1_ViralProj183710_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/858/895/GCF_009858895.2_ASM985889v3/GCF_009858895.2_ASM985889v3_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/854/845/GCF_000854845.1_ViralProj15025/GCF_000854845.1_ViralProj15025_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/861/845/GCF_000861845.1_ViralProj15432/GCF_000861845.1_ViralProj15432_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/865/085/GCF_000865085.1_ViralMultiSegProj15622/GCF_000865085.1_ViralMultiSegProj15622_genomic.fna.gz
+#Verificar descargar de todos los genomas
+ls *gz
+#Concatenar los 10 genomas
+cat *gz > todos_los_virus.fna
+#Contar número de secuencuas (identificadores)
+grep NC_* todos_los_virus.fna
+#Comprimir archivo
+gzip todos_los_virus.fna
+#Verificar nombre del archivo
+#Convertir a RNA
+sed s/T/U/g archivo.txt > nuevo_archivo.fna.gz
+#Cuente y muestre el número de codones de paro (UAA, UAG, UGA)
+grep -w UAA nuevo_archivo.fna.gz | wc -l
+grep -w UAG nuevo_archivo.fna.gz | wc -l
+grep -w UGA nuevo_archivo.fna.gz | wc -l
+#Cuente y muestre el número de codones de inicio (AUG)
+grep -w AUG nuevo_archivo.fna.gz | wc -l
+#Extraiga los identificadores de las secuencias y guardelos en un nuevo archivo
+grep NC_* nuevo_archivo.fna.gz > identificadores.txt
+#Estime el posible número de genes en los genomas virales
+#ya no entendí :c
+#Modifique todos los .fna de manera que los
+sed s/NC_*/>nombre común del organismo"/g identificadores.txt > identificadores2.txt
